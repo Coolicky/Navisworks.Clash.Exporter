@@ -52,4 +52,7 @@
             <HintPath>..\Navisworks_Dll\2023_dll\Autodesk.Navisworks.Resolver.dll</HintPath>
         </Reference>
     </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    </ItemGroup>
 </Project>
