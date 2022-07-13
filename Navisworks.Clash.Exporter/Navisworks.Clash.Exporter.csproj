@@ -94,5 +94,15 @@
     <ItemGroup>
       <PackageReference Include="ClosedXML" Version="0.96.0" />
     </ItemGroup>
+    <ItemGroup>
+      <None Remove="Images\Icon_16.png" />
+      <Content Include="Images\Icon_16.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Images\Icon_32.png" />
+      <Content Include="Images\Icon_32.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
 
 </Project>
