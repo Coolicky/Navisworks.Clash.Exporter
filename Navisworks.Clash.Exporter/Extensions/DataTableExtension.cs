@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Reflection;
 using ClosedXML.Excel;
+using Navisworks.Clash.Exporter.Data;
 using Navisworks.Clash.Exporter.Extensions.Attributes;
 
 namespace Navisworks.Clash.Exporter.Extensions
@@ -54,6 +55,48 @@ namespace Navisworks.Clash.Exporter.Extensions
 
             return dt;
         }
+
+        public static DataTable ToElementDataTable(this List<ElementDto> elements)
+        {
+            var dt = new DataTable();
+
+            dt.TableName = "Elements";
+
+            dt.Columns.Add("Name", typeof(string));
+            dt.Columns.Add("Guid", typeof(string));
+            dt.Columns.Add("ClassName", typeof(string));
+            dt.Columns.Add("Model", typeof(string));
+
+            var dictionaries = elements.Select(r => r.QuickProperties).ToList();
+            foreach (var dictionary in dictionaries)
+            {
+                foreach (var keyValuePair in dictionary)
+                {
+                    if (!dt.Columns.Contains(keyValuePair.Key))
+                    {
+                        dt.Columns.Add(keyValuePair.Key);
+                    }
+                }
+            }
+
+            foreach (var element in elements)
+            {
+                var row = dt.NewRow();
+                row["Name"] = element.Name;
+                row["Guid"] = element.Guid;
+                row["ClassName"] = element.ClassName;
+                row["Model"] = element.SourceFile;
+                foreach (var keyValuePair in element.QuickProperties)
+                {
+                    row[keyValuePair.Key] = keyValuePair.Value;
+                }
+
+                dt.Rows.Add(row);
+            }
+
+            return dt;
+        }
+
         public static DataTable ToDataTable(this IXLWorksheet worksheet)
         {
             var dt = new DataTable();
@@ -85,9 +128,10 @@ namespace Navisworks.Clash.Exporter.Extensions
                     }
                 }
             }
+
             return dt;
         }
-        
+
         public static XLWorkbook ToExcel(this IEnumerable<DataTable> tables)
         {
             var workbook = new XLWorkbook();
