@@ -2,7 +2,7 @@
 
 ## Installation
 
-You can Download the installer [Here](link)
+You can Download the installer [Here](https://github.com/Coolicky/Navisworks.Clash.Exporter/releases/tag/v0.8.0)
 
 ##### Installation Location
 
