@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <Nullable>disable</Nullable>
+        <Configurations>Release_2020;Release_2021;Release_2022;Release_2023</Configurations>
+        <Platforms>x64</Platforms>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_2020|x64' ">
+        <TargetFramework>net47</TargetFramework>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_2021|x64' ">
+        <TargetFramework>net47</TargetFramework>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_2022|x64' ">
+        <TargetFramework>net47</TargetFramework>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_2023|x64' ">
+        <TargetFramework>net48</TargetFramework>
+    </PropertyGroup>
+
+
+</Project>
