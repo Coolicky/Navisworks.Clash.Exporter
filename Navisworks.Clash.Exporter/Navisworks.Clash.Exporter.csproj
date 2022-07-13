@@ -93,6 +93,7 @@
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="ClosedXML" Version="0.96.0" />
+      <PackageReference Include="Serilog" Version="2.11.0" />
     </ItemGroup>
     <ItemGroup>
       <None Remove="Images\Icon_16.png" />
