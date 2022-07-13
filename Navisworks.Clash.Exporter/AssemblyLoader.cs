@@ -7,7 +7,7 @@ using Autodesk.Navisworks.Api.Plugins;
 namespace Navisworks.Clash.Exporter
 
 {
-    [Plugin("PM.Navisworks.ClashExporter.Loader", "COOL")]
+    [Plugin("Navisworks.Clash.Exporter.Loader", "COOL")]
     // ReSharper disable once ClassNeverInstantiated.Global
     public class AssemblyLoader : EventWatcherPlugin
     {
