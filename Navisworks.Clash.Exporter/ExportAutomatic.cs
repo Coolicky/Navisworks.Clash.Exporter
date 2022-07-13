@@ -28,7 +28,7 @@ namespace Navisworks.Clash.Exporter
             AppDomain.CurrentDomain.AssemblyResolve += AssemblyLoader.ResolveAssemblies;
             try
             {
-                _pipeClient = new NamedPipeClientStream(".","Clash", PipeDirection.InOut, PipeOptions.None, TokenImpersonationLevel.Anonymous);
+                _pipeClient = new NamedPipeClientStream(".","Clash Exporter", PipeDirection.InOut, PipeOptions.None, TokenImpersonationLevel.Anonymous);
                 _pipeClient.Connect();
                 _streamWriter = new StreamWriter(_pipeClient);
                 Log.Logger = new LoggerConfiguration()
