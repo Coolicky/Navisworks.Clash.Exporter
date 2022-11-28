@@ -41,9 +41,6 @@ namespace Navisworks.Clash.Exporter.Automation
         [Option("skipFileSave", HelpText = "Does not save Navisworks File. Useful for testing")]
         public bool SkipFileSave { get; set; }
 
-        [Option("hideUI", HelpText = "Hides Navisworks User Interface")]
-        public bool HideUI { get; set; }
-
 
         public string[] WriteToArray()
         {

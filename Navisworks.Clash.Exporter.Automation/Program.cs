@@ -134,9 +134,7 @@ namespace Navisworks.Clash.Exporter.Automation
 
                 Log.Information("Opening Navisworks application");
                 application = new NavisworksApplication();
-                if (options.HideUI)
-                    application.DisableProgress();
-                application.Visible = !options.HideUI;
+                
                 Log.Information("Opening Navisworks File: {File}", options.NavisworksFile);
                 application.OpenFile(options.NavisworksFile);
                 var parameters = options.WriteToArray();

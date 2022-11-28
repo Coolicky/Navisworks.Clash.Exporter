@@ -233,7 +233,5 @@ In addition to required arguments above you can provide further optional argumen
 > `--savePrevious` To save previous reports (will copy to "Previous" folder with appropriate time tamp)
 
 > `--skipFileSave` Will skip saving the navisworks file.
-> 
-> `--hideUI` Will hide Navisworks Window while running the procedure
 
 Keep all the arguments in a single line. The final result should look similar to the one below: `%AppData%\Autodesk\ApplicationPlugins\Navisworks.Clash.Exporter.bundle\Automation\2022\Navisworks.Clash.Exporter.Automation.exe -n "C:\Folder\File.nwf" -f "C:\Folder\Export" -f "C:\Folder\Export" --groupBy Level --savePrevious`
