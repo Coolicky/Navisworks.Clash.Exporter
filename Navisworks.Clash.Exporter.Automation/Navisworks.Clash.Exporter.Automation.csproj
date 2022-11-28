@@ -23,6 +23,7 @@
     <ItemGroup Condition="'$(Configuration)' == 'Release_2020'">
         <Reference Include="Autodesk.Navisworks.Automation">
             <HintPath>..\Navisworks_Dll\2020_dll\Autodesk.Navisworks.Automation.dll</HintPath>
+            <Private>false</Private>
         </Reference>
         <Reference Include="Autodesk.Navisworks.Resolver">
             <HintPath>..\Navisworks_Dll\2020_dll\Autodesk.Navisworks.Resolver.dll</HintPath>
@@ -31,6 +32,7 @@
     <ItemGroup Condition="'$(Configuration)' == 'Release_2021'">
         <Reference Include="Autodesk.Navisworks.Automation">
             <HintPath>..\Navisworks_Dll\2021_dll\Autodesk.Navisworks.Automation.dll</HintPath>
+            <Private>false</Private>
         </Reference>
         <Reference Include="Autodesk.Navisworks.Resolver">
             <HintPath>..\Navisworks_Dll\2021_dll\Autodesk.Navisworks.Resolver.dll</HintPath>
@@ -39,6 +41,7 @@
     <ItemGroup Condition="'$(Configuration)' == 'Release_2022'">
         <Reference Include="Autodesk.Navisworks.Automation">
             <HintPath>..\Navisworks_Dll\2022_dll\Autodesk.Navisworks.Automation.dll</HintPath>
+            <Private>false</Private>
         </Reference>
         <Reference Include="Autodesk.Navisworks.Resolver">
             <HintPath>..\Navisworks_Dll\2022_dll\Autodesk.Navisworks.Resolver.dll</HintPath>
@@ -47,6 +50,7 @@
     <ItemGroup Condition="'$(Configuration)' == 'Release_2023'">
         <Reference Include="Autodesk.Navisworks.Automation">
             <HintPath>..\Navisworks_Dll\2023_dll\Autodesk.Navisworks.Automation.dll</HintPath>
+            <Private>false</Private>
         </Reference>
         <Reference Include="Autodesk.Navisworks.Resolver">
             <HintPath>..\Navisworks_Dll\2023_dll\Autodesk.Navisworks.Resolver.dll</HintPath>

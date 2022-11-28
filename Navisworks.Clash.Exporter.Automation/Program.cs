@@ -33,6 +33,12 @@ namespace Navisworks.Clash.Exporter.Automation
         [STAThread]
         public static void Main(string[] args)
         {
+            var runtimeName = Resolver.TryBindToRuntime(RuntimeNames.Any);
+            if (string.IsNullOrEmpty(runtimeName))
+            {
+                throw new Exception("Failed to bind to Navisworks runtime");
+            }
+            
             var parseResult = Parser.Default.ParseArguments<Options>(args);
             parseResult.WithParsed(RunOptionsAndReturnExitCode)
                 .WithNotParsed(errors => ThrowOnParseError(parseResult));
@@ -120,13 +126,6 @@ namespace Navisworks.Clash.Exporter.Automation
 
         private static void Export(Options options)
         {
-            var runtimeName = Resolver.TryBindToRuntime(RuntimeNames.Any);
-            if (string.IsNullOrEmpty(runtimeName))
-            {
-                Log.Error("Could not bind to Navisworks runtime");
-                throw new Exception("Failed to bind to Navisworks runtime");
-            }
-
             NavisworksApplication application = null;
 
             try
