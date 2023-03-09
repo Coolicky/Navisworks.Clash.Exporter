@@ -55,7 +55,7 @@ namespace Navisworks.Clash.Exporter.Automation
             options.Add("--thenBy");
             options.Add(ThenBy);
             if (KeepGroups) options.Add("--keepGroups");
-            if (SkipRefresh) options.Add("--runClash");
+            if (SkipRefresh) options.Add("--skipRefresh");
             if (SavePrevious) options.Add("--savePrevious");
             if (Imperial) options.Add("--imperial");
             return options.ToArray();
