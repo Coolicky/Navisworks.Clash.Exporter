@@ -19,10 +19,14 @@ namespace Navisworks.Clash.Exporter.Setup
 
         private static Dictionary<int, string> _versions = new Dictionary<int, string>
         {
+            { 2018, "net46" },
+            { 2019, "net47" },
             { 2020, "net47" },
             { 2021, "net47" },
             { 2022, "net47" },
-            { 2023, "net48" }
+            { 2023, "net48" },
+            { 2024, "net48" },
+            { 2025, "net48" },
         };
 
         public static void Main(string[] args)
