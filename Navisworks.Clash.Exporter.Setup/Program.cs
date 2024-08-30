@@ -9,7 +9,6 @@ namespace Navisworks.Clash.Exporter.Setup
 {
     internal class Program
     {
-        private static readonly DateTime ProjectStartedDate = new DateTime(year: 2022, month: 7, day: 13);
         const string Guid = "89C569FF-EC52-4394-BEEB-626A7E239752";
         const string PluginName = "Navisworks Clash Exporter";
         const string DllName = "Navisworks.Clash.Exporter";
@@ -17,20 +16,24 @@ namespace Navisworks.Clash.Exporter.Setup
         private const string ProjectLocation = @"..\Navisworks.Clash.Exporter";
         private const string AutomationProjectLocation = @"..\Navisworks.Clash.Exporter.Automation";
 
-        private static Dictionary<int, string> _versions = new Dictionary<int, string>
+        private static readonly Dictionary<int, string> Versions = new Dictionary<int, string>
         {
+            { 2018, "net46" },
+            { 2019, "net47" },
             { 2020, "net47" },
             { 2021, "net47" },
             { 2022, "net47" },
-            { 2023, "net48" }
+            { 2023, "net48" },
+            { 2024, "net48" },
+            { 2025, "net48" },
         };
 
-        public static void Main(string[] args)
+        public static void Main()
         {
-            var folders = _versions.ToDictionary(
+            var folders = Versions.ToDictionary(
                 r => r.Key.ToString(),
                 r => $@"{ProjectLocation}\bin\x64\Release_{r.Key}\{r.Value}");
-            var automationFolders = _versions.ToDictionary(
+            var automationFolders = Versions.ToDictionary(
                 r => r.Key.ToString(),
                 r => $@"{AutomationProjectLocation}\bin\x64\Release_{r.Key}\{r.Value}");
 
@@ -61,7 +64,7 @@ namespace Navisworks.Clash.Exporter.Setup
                 Platform = Platform.x64,
                 UI = WUI.WixUI_Minimal,
                 Version = GetVersion(),
-                InstallScope = InstallScope.perUser,
+                Scope = InstallScope.perUser,
                 MajorUpgrade = MajorUpgrade.Default,
                 GUID = new Guid(Guid),
                 LicenceFile = "./Resources/GNU.rtf",
@@ -72,12 +75,12 @@ namespace Navisworks.Clash.Exporter.Setup
                 BannerImage = "./Resources/Banner.bmp",
                 BackgroundImage = "./Resources/Main.bmp",
             };
-            project.BuildMsi();
+            Compiler.BuildMsi(project);
         }
 
         private static void CreateManifest()
         {
-            var components = _versions.Select(r => new Components
+            var components = Versions.Select(r => new Components
             {
                 Description = r.Key.ToString(),
                 RuntimeRequirements = new RuntimeRequirements()
@@ -134,10 +137,8 @@ namespace Navisworks.Clash.Exporter.Setup
         private static Version GetVersion()
         {
             const int majorVersion = 0;
-            const int minorVersion = 10;
-            var daysSinceProjectStarted = (int)((DateTime.UtcNow - ProjectStartedDate).TotalDays);
-            var minutesSinceMidnight = (int)DateTime.UtcNow.TimeOfDay.TotalMinutes;
-            var version = $"{majorVersion}.{minorVersion}.{daysSinceProjectStarted}.{minutesSinceMidnight}";
+            const int minorVersion = 11;
+            var version = $"{majorVersion}.{minorVersion}.{0}.{0}";
             return new Version(version);
         }
     }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApplicationPackage xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="1" AutodeskProduct="Naviswork" Name="Navisworks Clash Exporter" Description="Navisworks Clash Exporter" AppVersion="0.11" ProductCode="324b6ade-f6fb-442e-9e4a-1b6e60ba59bd" UpgradeCode="89C569FF-EC52-4394-BEEB-626A7E239752">
+  <CompanyDetails Name="Coolicky, https://github.com/Coolicky" />
+  <Components Description="2018">
+    <RuntimeRequirements OS="Win64" Platform="NAVMAN" SeriesMin="Nw15" SeriesMax="Nw15" />
+    <ComponentEntry AppName="Navisworks Clash Exporter for Autodesk® Navisworks® 2018" AppType="ManagedPlugin" ModuleName="./Contents/2018/Navisworks.Clash.Exporter.dll" />
+  </Components>
+  <Components Description="2019">
+    <RuntimeRequirements OS="Win64" Platform="NAVMAN" SeriesMin="Nw16" SeriesMax="Nw16" />
+    <ComponentEntry AppName="Navisworks Clash Exporter for Autodesk® Navisworks® 2019" AppType="ManagedPlugin" ModuleName="./Contents/2019/Navisworks.Clash.Exporter.dll" />
+  </Components>
+  <Components Description="2020">
+    <RuntimeRequirements OS="Win64" Platform="NAVMAN" SeriesMin="Nw17" SeriesMax="Nw17" />
+    <ComponentEntry AppName="Navisworks Clash Exporter for Autodesk® Navisworks® 2020" AppType="ManagedPlugin" ModuleName="./Contents/2020/Navisworks.Clash.Exporter.dll" />
+  </Components>
+  <Components Description="2021">
+    <RuntimeRequirements OS="Win64" Platform="NAVMAN" SeriesMin="Nw18" SeriesMax="Nw18" />
+    <ComponentEntry AppName="Navisworks Clash Exporter for Autodesk® Navisworks® 2021" AppType="ManagedPlugin" ModuleName="./Contents/2021/Navisworks.Clash.Exporter.dll" />
+  </Components>
+  <Components Description="2022">
+    <RuntimeRequirements OS="Win64" Platform="NAVMAN" SeriesMin="Nw19" SeriesMax="Nw19" />
+    <ComponentEntry AppName="Navisworks Clash Exporter for Autodesk® Navisworks® 2022" AppType="ManagedPlugin" ModuleName="./Contents/2022/Navisworks.Clash.Exporter.dll" />
+  </Components>
+  <Components Description="2023">
+    <RuntimeRequirements OS="Win64" Platform="NAVMAN" SeriesMin="Nw20" SeriesMax="Nw20" />
+    <ComponentEntry AppName="Navisworks Clash Exporter for Autodesk® Navisworks® 2023" AppType="ManagedPlugin" ModuleName="./Contents/2023/Navisworks.Clash.Exporter.dll" />
+  </Components>
+  <Components Description="2024">
+    <RuntimeRequirements OS="Win64" Platform="NAVMAN" SeriesMin="Nw21" SeriesMax="Nw21" />
+    <ComponentEntry AppName="Navisworks Clash Exporter for Autodesk® Navisworks® 2024" AppType="ManagedPlugin" ModuleName="./Contents/2024/Navisworks.Clash.Exporter.dll" />
+  </Components>
+  <Components Description="2025">
+    <RuntimeRequirements OS="Win64" Platform="NAVMAN" SeriesMin="Nw22" SeriesMax="Nw22" />
+    <ComponentEntry AppName="Navisworks Clash Exporter for Autodesk® Navisworks® 2025" AppType="ManagedPlugin" ModuleName="./Contents/2025/Navisworks.Clash.Exporter.dll" />
+  </Components>
+</ApplicationPackage>
