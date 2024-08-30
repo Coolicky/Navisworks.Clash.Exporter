@@ -3,7 +3,7 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <Nullable>disable</Nullable>
-        <Configurations>Release_2020;Release_2021;Release_2022;Release_2023</Configurations>
+        <Configurations>Release_2019;Release_2018;Release_2020;Release_2021;Release_2022;Release_2023;Release_2024</Configurations>
         <Platforms>x64</Platforms>
     </PropertyGroup>
     
@@ -18,6 +18,12 @@
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_2023|x64' ">
         <TargetFramework>net48</TargetFramework>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_2024|x64' ">
+      <TargetFramework>net47</TargetFramework>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_2019|x64' ">
+      <TargetFramework>net47</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup Condition="'$(Configuration)' == 'Release_2020'">
