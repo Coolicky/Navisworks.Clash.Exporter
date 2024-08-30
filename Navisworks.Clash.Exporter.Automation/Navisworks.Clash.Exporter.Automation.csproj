@@ -3,10 +3,16 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <Nullable>disable</Nullable>
-        <Configurations>Release_2019;Release_2018;Release_2020;Release_2021;Release_2022;Release_2023;Release_2024</Configurations>
+        <Configurations>Release_2019;Release_2018;Release_2020;Release_2021;Release_2022;Release_2023;Release_2024;Release_2025</Configurations>
         <Platforms>x64</Platforms>
     </PropertyGroup>
-    
+
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_2018|x64' ">
+        <TargetFramework>net46</TargetFramework>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_2019|x64' ">
+        <TargetFramework>net47</TargetFramework>
+    </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_2020|x64' ">
         <TargetFramework>net47</TargetFramework>
     </PropertyGroup>
@@ -20,12 +26,30 @@
         <TargetFramework>net48</TargetFramework>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_2024|x64' ">
-      <TargetFramework>net47</TargetFramework>
+        <TargetFramework>net48</TargetFramework>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_2019|x64' ">
-      <TargetFramework>net47</TargetFramework>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_2025|x64' ">
+        <TargetFramework>net48</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup Condition="'$(Configuration)' == 'Release_2018'">
+        <Reference Include="Autodesk.Navisworks.Automation">
+            <HintPath>..\Navisworks_Dll\2018_dll\Autodesk.Navisworks.Automation.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Autodesk.Navisworks.Resolver">
+            <HintPath>..\Navisworks_Dll\2018_dll\Autodesk.Navisworks.Resolver.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)' == 'Release_2019'">
+        <Reference Include="Autodesk.Navisworks.Automation">
+            <HintPath>..\Navisworks_Dll\2019_dll\Autodesk.Navisworks.Automation.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Autodesk.Navisworks.Resolver">
+            <HintPath>..\Navisworks_Dll\2019_dll\Autodesk.Navisworks.Resolver.dll</HintPath>
+        </Reference>
+    </ItemGroup>
     <ItemGroup Condition="'$(Configuration)' == 'Release_2020'">
         <Reference Include="Autodesk.Navisworks.Automation">
             <HintPath>..\Navisworks_Dll\2020_dll\Autodesk.Navisworks.Automation.dll</HintPath>
@@ -62,10 +86,30 @@
             <HintPath>..\Navisworks_Dll\2023_dll\Autodesk.Navisworks.Resolver.dll</HintPath>
         </Reference>
     </ItemGroup>
-    <ItemGroup>
-      <PackageReference Include="CommandLineParser" Version="2.9.1" />
-      <PackageReference Include="Serilog" Version="2.11.0" />
-      <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
-      <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <ItemGroup Condition="'$(Configuration)' == 'Release_2024'">
+        <Reference Include="Autodesk.Navisworks.Automation">
+            <HintPath>..\Navisworks_Dll\2024_dll\Autodesk.Navisworks.Automation.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Autodesk.Navisworks.Resolver">
+            <HintPath>..\Navisworks_Dll\2024_dll\Autodesk.Navisworks.Resolver.dll</HintPath>
+        </Reference>
     </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)' == 'Release_2025'">
+        <Reference Include="Autodesk.Navisworks.Automation">
+            <HintPath>..\Navisworks_Dll\2025_dll\Autodesk.Navisworks.Automation.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Autodesk.Navisworks.Resolver">
+            <HintPath>..\Navisworks_Dll\2025_dll\Autodesk.Navisworks.Resolver.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CommandLineParser" Version="2.9.1"/>
+        <PackageReference Include="Serilog" Version="2.11.0"/>
+        <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1"/>
+        <PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>
+    </ItemGroup>
+
 </Project>
