@@ -4,3 +4,5 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 .nuke/temp/
+Navisworks.Clash.Exporter.Setup/output/
+Navisworks.Clash.Exporter.Setup/wix/

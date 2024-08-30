@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ApplicationPackage xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="1" AutodeskProduct="Naviswork" Name="Navisworks Clash Exporter" Description="Navisworks Clash Exporter" AppVersion="0.10" ProductCode="eabd99b1-0acb-411c-8966-2e48bc0700c8" UpgradeCode="89C569FF-EC52-4394-BEEB-626A7E239752">
+<ApplicationPackage xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="1" AutodeskProduct="Naviswork" Name="Navisworks Clash Exporter" Description="Navisworks Clash Exporter" AppVersion="0.11" ProductCode="324b6ade-f6fb-442e-9e4a-1b6e60ba59bd" UpgradeCode="89C569FF-EC52-4394-BEEB-626A7E239752">
   <CompanyDetails Name="Coolicky, https://github.com/Coolicky" />
   <Components Description="2018">
     <RuntimeRequirements OS="Win64" Platform="NAVMAN" SeriesMin="Nw15" SeriesMax="Nw15" />

@@ -9,7 +9,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="WixSharp" Version="1.20.1" />
+        <PackageReference Include="WixSharp_wix4" Version="2.3.2"/>
     </ItemGroup>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Exec Command="cd .\&#xD;&#xA;set ide=true&#xD;&#xA;&quot;$(TargetPath)&quot;"/>
+    </Target>
 
 </Project>
