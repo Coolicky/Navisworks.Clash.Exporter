@@ -102,13 +102,13 @@ The Exported Excel file should contain:
 
 - Clashing Elements Details
   
-  > `Name` Name of the Clash Group
+  > `Name` Name of the Element
   > 
-  > `Guid` Unique Test Identifier
+  > `Guid` Unique Identifier of the Element
   > 
   > `ClassName` Class Name (type) of the element
   > 
-  > `Model` The name of the source model to which the element belongs
+  > `Model` The name of the source model to which the element belongs or "Error_NotFound" if SourceFileName could not be obtained
   > 
   > Additional Columns can be added using [Quick Properties](%5BHelp%5D(https://help.autodesk.com/view/NAV/2020/ENU/?guid=GUID-1555C5C2-923B-4342-8120-6BB0EADF45E1)). Each Quick Property will display as additional column for the elements
 
@@ -133,6 +133,46 @@ The Exported Excel file should contain:
   > Historical Summary is almost identical to Summary Page. However it will additionally include a `Date` Column. Previous summaries will be saved in this Page allowing for comparison over time.
 
 The Excel can be used as a Data Source for Power Bi Report and relationship between the tables can be established using the `Guid` values.
+
+```mermaid
+erDiagram
+    direction LR
+    ClashTest {
+        string Guid PK "Unique Test Identifier"
+        string Other "Other Properties..."
+    }
+    ClashGroup {
+        string Guid PK "Unique Group Identifier"
+        string TestGuid FK "Reference to ClashTest"
+        string Other "Other Properties..."
+    }
+    ClashResult {
+        string Guid PK "Unique Result Identifier"
+        string TestGuid FK "Reference to ClashTest"
+        string GroupGuid FK "Reference to ClashGroup"
+        string Other "Other Properties..."
+        string Item1Guid "Reference to ClashingElement"
+        string Item2Guid "Reference to ClashingElement"
+    }
+    ClashingElement {
+        string Guid PK "Unique Element Identifier"
+        string GroupGuid FK "Reference to ClashGroup"
+        string Other "Other Properties..."
+    }
+    ClashComment {
+        string ID PK
+        string OwnerGuid
+        string Other "Other Properties..."
+    }
+
+    ClashTest ||--o{ ClashGroup : "Test GUID"
+    ClashTest ||--o{ ClashResult : "Test GUID"
+    ClashResult ||--|| ClashingElement : "Item1Guid"
+    ClashResult ||--|| ClashingElement : "Item2Guid"
+    ClashResult ||--o{ ClashComment : "Result GUID"
+    ClashGroup ||--o{ ClashComment : "Group GUID"
+    ClashTest  ||--o{ ClashComment : "Test GUID"
+```
 
 ## Automation
 

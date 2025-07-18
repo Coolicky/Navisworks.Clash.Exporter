@@ -137,7 +137,7 @@ namespace Navisworks.Clash.Exporter.Setup
         private static Version GetVersion()
         {
             const int majorVersion = 0;
-            const int minorVersion = 11;
+            const int minorVersion = 12;
             var version = $"{majorVersion}.{minorVersion}.{0}.{0}";
             return new Version(version);
         }

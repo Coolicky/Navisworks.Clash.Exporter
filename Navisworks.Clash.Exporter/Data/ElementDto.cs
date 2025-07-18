@@ -29,13 +29,11 @@ namespace Navisworks.Clash.Exporter.Data
         {
             try
             {
-                return modelItem.PropertyCategories
-                    .FindPropertyByDisplayName("Item", "Source File").Value
-                    .ToDisplayString();
+                return modelItem.Model.SourceFileName;
             }
             catch
             {
-                return "Could Not Find";
+                return "Error_NotFound";
             }
         }
 
