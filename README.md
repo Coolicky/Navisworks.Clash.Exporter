@@ -108,7 +108,7 @@ The Exported Excel file should contain:
   > 
   > `ClassName` Class Name (type) of the element
   > 
-  > `Model` The name of the source model to which the element belongs
+  > `Model` The name of the source model to which the element belongs or "Error_NotFound" if SourceFileName could not be obtained
   > 
   > Additional Columns can be added using [Quick Properties](%5BHelp%5D(https://help.autodesk.com/view/NAV/2020/ENU/?guid=GUID-1555C5C2-923B-4342-8120-6BB0EADF45E1)). Each Quick Property will display as additional column for the elements
 
