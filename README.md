@@ -102,9 +102,9 @@ The Exported Excel file should contain:
 
 - Clashing Elements Details
   
-  > `Name` Name of the Clash Group
+  > `Name` Name of the Element
   > 
-  > `Guid` Unique Test Identifier
+  > `Guid` Unique Identifier of the Element
   > 
   > `ClassName` Class Name (type) of the element
   > 
