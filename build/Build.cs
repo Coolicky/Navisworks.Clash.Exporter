@@ -1,6 +1,6 @@
 using Nuke.Common;
 using Nuke.Common.ProjectModel;
-using Nuke.Common.Tools.MSBuild;
+using Nuke.Common.Tools.DotNet;
 
 class Build : NukeBuild
 {
@@ -35,8 +35,6 @@ class Build : NukeBuild
     }
 
     void BuildConfig(Configuration config) =>
-        MSBuildTasks.MSBuild(r => r
-            .EnableRestore()
-            .SetTargetPath(Solution)
+        DotNetTasks.DotNetBuild(r => r
             .SetConfiguration(config));
 }
