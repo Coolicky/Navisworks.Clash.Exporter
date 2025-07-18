@@ -134,6 +134,46 @@ The Exported Excel file should contain:
 
 The Excel can be used as a Data Source for Power Bi Report and relationship between the tables can be established using the `Guid` values.
 
+```mermaid
+erDiagram
+    direction LR
+    ClashTest {
+        string Guid PK "Unique Test Identifier"
+        string Other "Other Properties..."
+    }
+    ClashGroup {
+        string Guid PK "Unique Group Identifier"
+        string TestGuid FK "Reference to ClashTest"
+        string Other "Other Properties..."
+    }
+    ClashResult {
+        string Guid PK "Unique Result Identifier"
+        string TestGuid FK "Reference to ClashTest"
+        string GroupGuid FK "Reference to ClashGroup"
+        string Other "Other Properties..."
+        string Item1Guid "Reference to ClashingElement"
+        string Item2Guid "Reference to ClashingElement"
+    }
+    ClashingElement {
+        string Guid PK "Unique Element Identifier"
+        string GroupGuid FK "Reference to ClashGroup"
+        string Other "Other Properties..."
+    }
+    ClashComment {
+        string ID PK
+        string OwnerGuid
+        string Other "Other Properties..."
+    }
+
+    ClashTest ||--o{ ClashGroup : "Test GUID"
+    ClashTest ||--o{ ClashResult : "Test GUID"
+    ClashResult ||--|| ClashingElement : "Item1Guid"
+    ClashResult ||--|| ClashingElement : "Item2Guid"
+    ClashResult ||--o{ ClashComment : "Result GUID"
+    ClashGroup ||--o{ ClashComment : "Group GUID"
+    ClashTest  ||--o{ ClashComment : "Test GUID"
+```
+
 ## Automation
 
 #### Features
