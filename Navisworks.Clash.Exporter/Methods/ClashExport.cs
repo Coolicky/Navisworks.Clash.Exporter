@@ -154,8 +154,12 @@ namespace Navisworks.Clash.Exporter.Methods
             dataTables.Add(historicalTable);
         }
 
-        public static List<DataTable> CreateDataTables(DocumentClashTests clashTests)
+        /// <summary>
+        /// This will take 85% of the progress!
+        /// </summary>
+        public static List<DataTable> CreateDataTables(DocumentClashTests clashTests, Progress progress = null)
         {
+            double currentProgress = 0;
             var summaries = new List<SummaryDto>();
             var tests = new List<ClashTestDto>();
             var groups = new List<ClashGroupDto>();
@@ -163,11 +167,17 @@ namespace Navisworks.Clash.Exporter.Methods
             var elements = new List<ElementDto>();
             var comments = new List<CommentDto>();
 
+            progress?.BeginSubOperation(0.9, "Reading Clash Data");
             Logger.Information("Reading Separate Clash Data");
-            foreach (var savedItem in clashTests.Tests)
+            for (var index = 0; index < clashTests.Tests.Count; index++)
             {
+                var savedItem = clashTests.Tests[index];
                 if (!(savedItem is ClashTest clashTest)) continue;
 
+                var left = clashTests.Tests.Count - index;
+                var fraction = 1d / left;
+                progress?.BeginSubOperation(fraction, "Extracting Clash Test Data...");
+                
                 Logger.Information("Processing Clash Test Results for: {Name}", clashTest.DisplayName);
 
                 summaries.Add(new SummaryDto(clashTest));
@@ -185,10 +195,16 @@ namespace Navisworks.Clash.Exporter.Methods
                     .Cast<ClashResultGroup>()
                     .ToList();
 
+                var operationCount = clashResults.Count + clashGroups.Count;
+                var progressFraction = 1d / clashTests.Tests.Count / operationCount;
+
                 Logger.Information("No. Clash Groups Found {Number}", clashGroups.Count);
 
                 foreach (var clashGroup in clashGroups)
                 {
+                    currentProgress += progressFraction;
+                    progress?.Update(currentProgress.Clamp(0, 1));
+
                     var groupDto = new ClashGroupDto(clashGroup, savedItem.Guid);
                     groups.Add(groupDto);
                     comments.AddRange(groupDto.Comments);
@@ -202,15 +218,19 @@ namespace Navisworks.Clash.Exporter.Methods
 
                 foreach (var clashResult in clashResults)
                 {
+                    currentProgress += progressFraction;
+                    progress?.Update(currentProgress.Clamp(0, 1));
+
                     var resultDto = new ClashResultDto(clashResult, savedItem.Guid);
                     clashes.Add(resultDto);
                     comments.AddRange(resultDto.Comments);
                     elements.AddRange(resultDto.Items);
                 }
+                progress?.EndSubOperation(true);
             }
+            progress?.EndSubOperation(true);
 
             Logger.Information("Converting Data...");
-
             var dataTables = new List<DataTable>
             {
                 summaries.ToDataTable(),
@@ -220,6 +240,7 @@ namespace Navisworks.Clash.Exporter.Methods
                 elements.ToElementDataTable(),
                 comments.ToDataTable()
             };
+            progress?.Update(0.85);
             return dataTables;
         }
 
