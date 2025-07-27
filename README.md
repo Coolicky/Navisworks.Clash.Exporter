@@ -156,7 +156,6 @@ erDiagram
     }
     ClashingElement {
         string Guid PK "Unique Element Identifier"
-        string GroupGuid FK "Reference to ClashGroup"
         string Other "Other Properties..."
     }
     ClashComment {
