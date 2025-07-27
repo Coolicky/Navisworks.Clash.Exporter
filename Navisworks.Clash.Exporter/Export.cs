@@ -24,12 +24,24 @@ namespace Navisworks.Clash.Exporter
                 if (dialog.ShowDialog() != DialogResult.OK) return 0;
                 var fileName = dialog.FileName;
 
+                var progress = Application.BeginProgress();
+                
                 var clashManager = Application.MainDocument.GetClash();
                 var clashTests = clashManager.TestsData;
 
-                var dataTables = ClashExport.CreateDataTables(clashTests);
+                progress.BeginSubOperation(0.85);
+                var dataTables = ClashExport.CreateDataTables(clashTests, progress);
+                progress.EndSubOperation();
+
+                progress.BeginSubOperation(0.5, "Exporting clashes to Excel...");
                 var excel = dataTables.ToExcel();
+                progress.EndSubOperation();
+
+                progress.BeginSubOperation(1, "Saving Excel file...");
                 excel.SaveAs(fileName);
+                progress.EndSubOperation();
+                Application.EndProgress();
+
                 MessageBox.Show("Successfully exported clashes to " + fileName);
             }
             catch (Exception e)

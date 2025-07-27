@@ -36,34 +36,35 @@ namespace Navisworks.Clash.Exporter.Data
             Status = clash.Status.ToString();
             Comments = clash.Comments?.Select(r => new CommentDto(r, Guid)).ToList();
             Items = new List<ElementDto>();
+
+            
             if (clash.Item1 != null)
             {
-                var item = clash.Item1;
-                while (item.InstanceGuid == new Guid("00000000-0000-0000-0000-000000000000"))
+                var item = clash.Item1.GetUniquelyIdentifiableItem(out var uniqueId);
+                if (item != null)
                 {
-                    item = item.Parent;
+                    Item1Guid = uniqueId;
+                    AddElement(new ElementDto(item, uniqueId));
                 }
-
-                Item1Guid = item.InstanceGuid.ToString();
-                Items.Add(new ElementDto(item));
             }
 
             if (clash.Item2 != null)
             {
-                var item = clash.Item2;
-                while (item.InstanceGuid == new Guid("00000000-0000-0000-0000-000000000000"))
+                var item = clash.Item2.GetUniquelyIdentifiableItem(out var uniqueId);
+                if (item != null)
                 {
-                    item = item.Parent;
+                    Item2Guid = uniqueId;
+                    AddElement(new ElementDto(item, uniqueId));
                 }
-
-                Item2Guid = item.InstanceGuid.ToString();
-                Items.Add(new ElementDto(item));
             }
 
             var gridSystem = Application.MainDocument.Grids.ActiveSystem;
-            Level = gridSystem.ClosestIntersection(clash.Center)?.Level?.DisplayName;
-            GridIntersection = gridSystem.ClosestIntersection(clash.Center)?.DisplayName
-                .Replace($" : {Level}", string.Empty);
+            if (gridSystem != null)
+            {            
+                Level = gridSystem.ClosestIntersection(clash.Center)?.Level?.DisplayName;
+                GridIntersection = gridSystem.ClosestIntersection(clash.Center)?.DisplayName
+                    .Replace($" : {Level}", string.Empty);
+            }
         }
 
         [ColumnName("Test Guid")] public string TestGuid { get; }
@@ -84,5 +85,12 @@ namespace Navisworks.Clash.Exporter.Data
         [ColumnName("Level")] public string Level { get; }
         [IgnoreColumn] public List<ElementDto> Items { get; }
         [IgnoreColumn] public List<CommentDto> Comments { get; }
+
+        private void AddElement(ElementDto element)
+        {
+            if (element == null) return;
+            if (Items.Any(r => r.Guid == element.Guid)) return;
+            Items.Add(element);
+        }
     }
 }

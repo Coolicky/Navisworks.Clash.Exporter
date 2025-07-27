@@ -11,15 +11,10 @@ namespace Navisworks.Clash.Exporter.Data
     [TableName("Elements")]
     public class ElementDto
     {
-        public ElementDto(ModelItem modelItem)
+        public ElementDto(ModelItem modelItem, string guid)
         {
-            while (modelItem.InstanceGuid == new Guid("00000000-0000-0000-0000-000000000000"))
-            {
-                modelItem = modelItem.Parent;
-            }
-
             Name = modelItem.DisplayName;
-            Guid = modelItem.InstanceGuid.ToString();
+            Guid = guid;
             ClassName = modelItem.ClassDisplayName;
             SourceFile = GetSourceFile(modelItem);
             QuickProperties = GetQuickProperties(modelItem);
@@ -29,7 +24,17 @@ namespace Navisworks.Clash.Exporter.Data
         {
             try
             {
-                return modelItem.Model.SourceFileName;
+                var directParent = modelItem.Model?.SourceFileName;
+                if (string.IsNullOrEmpty(directParent))
+                {
+                    var item = modelItem.Parent;
+                    while (item.Parent != null)
+                    {
+                        item = item.Parent;
+                        directParent = item.DisplayName;
+                    }
+                }
+                return directParent;
             }
             catch
             {
