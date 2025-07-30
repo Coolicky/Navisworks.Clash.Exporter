@@ -79,7 +79,10 @@ namespace Navisworks.Clash.Exporter.Extensions
                 }
             }
 
-            foreach (var element in elements)
+            foreach (var element in elements
+                         .OrderByDescending(r => r.QuickProperties.Count)
+                         .GroupBy(r => r.Guid)
+                         .Select(g => g.First()))
             {
                 var row = dt.NewRow();
                 row["Name"] = element.Name;
